@@ -12,6 +12,8 @@ extern "C" {
 #define CTRL_CLKSOURCE (1 << 2)
 #define CTRL_COUNTFLAG (1 << 16)
 
+
+
 #define BUTTON_PIN 13
 #define BUTTON_PORT GPIOC
 #define LED_PIN 5
@@ -19,7 +21,6 @@ extern "C" {
 
 
 void fpu_enable();
-void debug_uart_init();
 void delay_ms(uint32_t delay);
 void SysTick_Init();
 void BSP_GPIO_Config();
