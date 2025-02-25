@@ -18,6 +18,8 @@ void UART_DFPlayer_Init();
 void debug_uart_init();
 void buffer_send_str(char* str, UartType uart_type);
 void circular_buffer_init();
+void clear_buffer(UartType uart_type);
+void buffer_send_byte(uint8_t* data, uint16_t len);
 
 #define UART_BUFFER_SIZE 100
 #define INIT_VAL 0

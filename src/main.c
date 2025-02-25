@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "adc.h"
 #include "uart.h"
+#include "df_player.h"
 
 #define LED_PIN 5
 #define BUFFER_SIZE 10
@@ -30,14 +31,17 @@ int main() {
     ADC_DMA_Start(adc_value, BUFFER_SIZE);
     UART_DFPlayer_Init();
     circular_buffer_init();
+    df_player_init(20);//Volume 20 de 0-30
+    //df_player_play_first_track();
+    df_player_repeat_track();
     while(1) {
         //Quando encerrar de ler todos os valores do buffer printa na tela
-        if(data_ready){
+        /*if(data_ready){
             data_ready = 0;
             for(uint8_t i = 0; i < BUFFER_SIZE; i++) {
                 printf("ADC value: %d\n", adc_value[i]);
             }
-        }
+        }*/
         buffer_send_str("tes\n", DEBUG_UART);
         delay_ms(1000);
 /*         ADC_Start();

@@ -137,7 +137,7 @@ void clear_buffer(UartType uart_type)
         memset(ptr_rx_buffer->buffer, 0, UART_BUFFER_SIZE);
         ptr_rx_buffer->head = 0;
     }
-    if(uart_type == DEBUG_UART) {
+    else if(uart_type == DEBUG_UART) {
         memset(ptr_rx_buffer_debug->buffer, 0, UART_BUFFER_SIZE);
         ptr_rx_buffer_debug->head = 0;
     }
@@ -203,6 +203,14 @@ void buffer_write(uint8_t ch, UartType uart_type)
     else if(uart_type == DEBUG_UART) {
         buff_store_char(ch, ptr_tx_buffer_debug);
 
+    }
+}
+
+//Função para enviar bytes
+void buffer_send_byte(uint8_t* data, uint16_t len)
+{
+    for(uint16_t i = 0; i < len; i++) {
+        buffer_write(data[i], DF_PLAYER_UART);
     }
 }
 
@@ -317,4 +325,5 @@ void USART2_IRQHandler()
 {
     uart_callback(USART2, ptr_rx_buffer_debug, ptr_tx_buffer_debug);
 }
+
 
